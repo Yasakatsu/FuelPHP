@@ -1,8 +1,4 @@
-<html>
-
-<head>
-	<?php echo $head; ?>
-</head>
+<?php echo $head; ?>
 
 <body>
 	<?php echo $content; ?>

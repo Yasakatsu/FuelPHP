@@ -8,3 +8,5 @@ ERROR - 2023-09-15 08:33:23 --> Warning - Undefined variable $head in /Applicati
 ERROR - 2023-09-15 08:38:51 --> Error - syntax error, unexpected token "return" in /Applications/MAMP/htdocs/sample_framework/fuel/app/classes/controller/home.php on line 17
 ERROR - 2023-09-15 08:39:28 --> Error - Call to undefined method Fuel\Core\View::set_grobal() in /Applications/MAMP/htdocs/sample_framework/fuel/app/classes/controller/home.php on line 12
 ERROR - 2023-09-15 08:39:29 --> Error - Call to undefined method Fuel\Core\View::set_grobal() in /Applications/MAMP/htdocs/sample_framework/fuel/app/classes/controller/home.php on line 12
+ERROR - 2023-09-15 15:09:12 --> Error - syntax error, unexpected token "(" in /Applications/MAMP/htdocs/sample_framework/fuel/app/views/template/head.php on line 8
+ERROR - 2023-09-15 15:26:44 --> Error - Could not find asset: rails_logo.png in /Applications/MAMP/htdocs/sample_framework/fuel/core/classes/asset/instance.php on line 413
