@@ -1,5 +1,5 @@
 <h1>コンテンツタイトルです。</h1>
-<div class="welcome_user">Welcome  あなたの名前は<?php echo $username; ?> 年齢は、<?php echo $age; ?>歳です。</div>
+<div class="welcome_user">Welcome</div>
 <div><?php echo Asset::img('logo.jpg', array('style' => 'height:auto;width:200px', 'alt' => 'タイトル画像')); ?></div>
 <p><?php echo Html::anchor('welcome/index', 'トップへ戻る'); ?></p>
 <?php Asset::add_path('assets/upload', 'img'); ?>
