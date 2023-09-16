@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Fuel is a fast, lightweight, community driven PHP 5.4+ framework.
  *
@@ -24,8 +25,8 @@ namespace Fuel\Core;
 abstract class Controller_Template extends \Controller
 {
 	/**
-	* @var string page template
-	*/
+	 * @var string page template
+	 */
 	public $template = 'template';
 
 	/**
@@ -33,8 +34,7 @@ abstract class Controller_Template extends \Controller
 	 */
 	public function before()
 	{
-		if ( ! empty($this->template) and is_string($this->template))
-		{
+		if (!empty($this->template) and is_string($this->template)) {
 			// Load the template
 			$this->template = \View::forge($this->template);
 		}
@@ -50,12 +50,10 @@ abstract class Controller_Template extends \Controller
 	public function after($response)
 	{
 		// If nothing was returned default to the template
-		if ($response === null)
-		{
+		if ($response === null) {
 			$response = $this->template;
 		}
 
 		return parent::after($response);
 	}
-
 }
