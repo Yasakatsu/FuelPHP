@@ -1,10 +1,9 @@
 <?php
-
 /**
  * Fuel is a fast, lightweight, community driven PHP 5.4+ framework.
  *
  * @package    Fuel
- * @version    1.9-dev　a
+ * @version    1.9-dev
  * @author     Fuel Development Team
  * @license    MIT License
  * @copyright  2010 - 2019 Fuel Development Team
@@ -43,7 +42,7 @@ ini_set('display_errors', 1);
  * -----------------------------------------------------------------------------
  */
 
-define('DOCROOT', __DIR__ . DIRECTORY_SEPARATOR);
+define('DOCROOT', __DIR__.DIRECTORY_SEPARATOR);
 
 /**
  * -----------------------------------------------------------------------------
@@ -51,7 +50,7 @@ define('DOCROOT', __DIR__ . DIRECTORY_SEPARATOR);
  * -----------------------------------------------------------------------------
  */
 
-define('APPPATH', realpath(__DIR__ . '/../fuel/app/') . DIRECTORY_SEPARATOR);
+define('APPPATH', realpath(__DIR__.'/../fuel/app/').DIRECTORY_SEPARATOR);
 
 /**
  * -----------------------------------------------------------------------------
@@ -59,7 +58,7 @@ define('APPPATH', realpath(__DIR__ . '/../fuel/app/') . DIRECTORY_SEPARATOR);
  * -----------------------------------------------------------------------------
  */
 
-define('PKGPATH', realpath(__DIR__ . '/../fuel/packages/') . DIRECTORY_SEPARATOR);
+define('PKGPATH', realpath(__DIR__.'/../fuel/packages/').DIRECTORY_SEPARATOR);
 
 /**
  * -----------------------------------------------------------------------------
@@ -67,7 +66,7 @@ define('PKGPATH', realpath(__DIR__ . '/../fuel/packages/') . DIRECTORY_SEPARATOR
  * -----------------------------------------------------------------------------
  */
 
-define('COREPATH', realpath(__DIR__ . '/../fuel/core/') . DIRECTORY_SEPARATOR);
+define('COREPATH', realpath(__DIR__.'/../fuel/core/').DIRECTORY_SEPARATOR);
 
 /**
  * -----------------------------------------------------------------------------
@@ -90,7 +89,8 @@ defined('FUEL_START_MEM') or define('FUEL_START_MEM', memory_get_usage());
  * -----------------------------------------------------------------------------
  */
 
-if (!file_exists(COREPATH . 'classes' . DIRECTORY_SEPARATOR . 'autoloader.php')) {
+if ( ! file_exists(COREPATH.'classes'.DIRECTORY_SEPARATOR.'autoloader.php'))
+{
 	die('No composer autoloader found. Please run composer to install the FuelPHP framework dependencies first!');
 }
 
@@ -100,7 +100,7 @@ if (!file_exists(COREPATH . 'classes' . DIRECTORY_SEPARATOR . 'autoloader.php'))
  * -----------------------------------------------------------------------------
  */
 
-require COREPATH . 'classes' . DIRECTORY_SEPARATOR . 'autoloader.php';
+require COREPATH.'classes'.DIRECTORY_SEPARATOR.'autoloader.php';
 
 class_alias('Fuel\\Core\\Autoloader', 'Autoloader');
 
@@ -113,24 +113,35 @@ class_alias('Fuel\\Core\\Autoloader', 'Autoloader');
  *
  */
 
-$routerequest = function ($request = null, $e = false) {
+$routerequest = function($request = null, $e = false)
+{
 	Request::reset_request(true);
 
-	$route = array_key_exists($request, Router::$routes) ? Router::$routes[$request]->translation : Config::get('routes.' . $request);
+	$route = array_key_exists($request, Router::$routes) ? Router::$routes[$request]->translation : Config::get('routes.'.$request);
 
-	if ($route instanceof Closure) {
+	if ($route instanceof Closure)
+	{
 		$response = $route();
 
-		if (!$response instanceof Response) {
+		if( ! $response instanceof Response)
+		{
 			$response = Response::forge($response);
 		}
-	} elseif ($e === false) {
+	}
+	elseif ($e === false)
+	{
 		$response = Request::forge()->execute()->response();
-	} elseif ($route) {
+	}
+	elseif ($route)
+	{
 		$response = Request::forge($route, false)->execute(array($e))->response();
-	} elseif ($request) {
+	}
+	elseif ($request)
+	{
 		$response = Request::forge($request)->execute(array($e))->response();
-	} else {
+	}
+	else
+	{
 		throw $e;
 	}
 
@@ -152,19 +163,28 @@ $routerequest = function ($request = null, $e = false) {
  *
  */
 
-try {
+try
+{
 	// Boot the app...
-	require APPPATH . 'bootstrap.php';
+	require APPPATH.'bootstrap.php';
 
 	// ... and execute the main request
 	$response = $routerequest();
-} catch (HttpBadRequestException $e) {
+}
+catch (HttpBadRequestException $e)
+{
 	$response = $routerequest('_400_', $e);
-} catch (HttpNoAccessException $e) {
+}
+catch (HttpNoAccessException $e)
+{
 	$response = $routerequest('_403_', $e);
-} catch (HttpNotFoundException $e) {
+}
+catch (HttpNotFoundException $e)
+{
 	$response = $routerequest('_404_', $e);
-} catch (HttpServerErrorException $e) {
+}
+catch (HttpServerErrorException $e)
+{
 	$response = $routerequest('_500_', $e);
 }
 
@@ -181,7 +201,8 @@ $response->body((string) $response);
  *
  */
 
-if (strpos($response->body(), '{exec_time}') !== false or strpos($response->body(), '{mem_usage}') !== false) {
+if (strpos($response->body(), '{exec_time}') !== false or strpos($response->body(), '{mem_usage}') !== false)
+{
 	$bm = Profiler::app_total();
 
 	$response->body(
