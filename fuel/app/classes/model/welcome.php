@@ -7,6 +7,6 @@ class Welcome extends \Model
 {
   public static function get_results()
   {
-    return 'DBレコードが返ってきております（※サンプル）';
+    return 'DBレコードが返ってきております（※サンプル表記）';
   }
 }
