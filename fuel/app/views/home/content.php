@@ -1,9 +1,7 @@
 <h1>メインタイトルです。</h1>
-<div class="welcome_user"><?php
-
-                          use Fuel\Core\Html;
-
-                          echo $username ?></div>
+<div class="welcome_user">
+  名前は<?php echo $username ?>で、年齢は<?php echo $age ?>です。
+</div>
 <?php echo Asset::img(
   'fuelphp-logo.png',
   array(
@@ -16,10 +14,5 @@
 </p>
 
 <?php Asset::add_path('assets/upload/', 'img'); ?>
-<?php echo Asset::img(
-  'laravel_logo.png',
-  array(
-    'style' => 'height:auto;width:200px', 'alt' => 'uploadされた画像を表示'
-  )
-); ?>
+<?php echo Asset::img('laravel_logo.png', array('style' => 'height:auto;width:200px', 'alt' => 'uploadされた画像を表示')); ?>
 <p>assets/js,css,img以外のフォルダを作って表示</p>
