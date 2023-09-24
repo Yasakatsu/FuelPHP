@@ -1,6 +1,5 @@
 <h1>メインタイトルです。</h1>
 <div class="welcome_user">
-  名前は<?php echo $username ?>で、年齢は<?php echo $age ?>です。
 </div>
 <?php echo Asset::img(
   'fuelphp-logo.png',
