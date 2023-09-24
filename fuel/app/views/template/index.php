@@ -7,6 +7,7 @@
 
 <body>
 	<?php echo $content; ?>
+	<?php echo $data; ?>
 	<?php echo $footer; ?>
 </body>
 

@@ -1,6 +1,7 @@
 <?php
 
 use Fuel\Core\Controller_Template;
+use \Model\welcome;
 
 class Controller_Home extends Controller_Template
 {
@@ -11,5 +12,7 @@ class Controller_Home extends Controller_Template
 		$this->template->head = View::forge('template/head');
 		$this->template->content = View::forge('home/content');
 		$this->template->footer = View::forge('template/footer');
+		$data = welcome::get_results();
+		$this->template->data = $data;
 	}
 }
