@@ -3,13 +3,16 @@ class Controller_Home extends Controller
 {
 	public function action_index()
 	{
-		$data = array();
+		//変数としてビューを割り当てる
+		$view = View::forge('template/index'); //テンプレートとなるビューファイルの読込み
+		$view->set('head', View::forge('template/head'));
+		$view->set('content', View::forge('home/content'));
+		$view->set('footer', View::forge('template/footer'));
+		$view->set_global('username', 'usernamedesu(set-global関数)');
+		//テンプレートビューの中でさらに読み込んだビューの中にある変数へ値を渡したい場合はset_globalを使う。
+		//テンプレートビューの中で使う変数へ値を渡すだけならsetでいい。
 
-		$data['username'] = 'Tsukasa';
-		$data['title'] = 'タブのタイトルを変更';
-
-		//ビューへ変数と値を渡す
-		return View::forge('home/index', $data);
-		//home/indexとすれば、homeフォルダ内のindex.phpのビューという意味になる。
+		// レンダリングした HTML をリクエストに返す
+		return $view;
 	}
 }
