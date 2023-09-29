@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="ja">
+<html>
 
 <head>
-	<?php echo $head ?>
+	<?= $head ?>
 </head>
 
 <body>
-	<?php echo $content; ?>
-	<?php echo $data; ?>
-	<?php echo $footer; ?>
+	<?= $header ?>
+	<?= $contents ?>
+	<?= $footer ?>
 </body>
 
 </html>
