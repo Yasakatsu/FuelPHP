@@ -23,6 +23,6 @@ endif;
 
 <header class="header">
     <div class="site-width">
-        <?php echo Asset::img('logo-re.png', array('width' => '150', 'alt' => 'ロゴ画像', 'class' => 'vartical-center')) ?>
+        <?php echo Asset::img('logo-re.png', array('width' => '150', 'alt' => 'ロゴ画像', 'class' => 'vertical-center')) ?>
     </div>
 </header>
