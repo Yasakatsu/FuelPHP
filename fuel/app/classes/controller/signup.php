@@ -1,7 +1,5 @@
 <?php
 
-use Fuel\Core\Controller;
-
 class Controller_Signup extends Controller
 {
     const PASS_LENGTH_MIN = 6;
