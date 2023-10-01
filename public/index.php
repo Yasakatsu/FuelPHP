@@ -1,118 +1,56 @@
 <?php
 /**
- * Fuel is a fast, lightweight, community driven PHP 5.4+ framework.
+ * Fuel is a fast, lightweight, community driven PHP5 framework.
  *
  * @package    Fuel
- * @version    1.9-dev
+ * @version    1.8
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2019 Fuel Development Team
- * @link       https://fuelphp.com
+ * @copyright  2010 - 2016 Fuel Development Team
+ * @link       http://fuelphp.com
  */
 
 /**
- * -----------------------------------------------------------------------------
- *  Configure PHP Settings
- * -----------------------------------------------------------------------------
+ * Set error reporting and display errors settings.  You will want to change these when in production.
  */
-
-/**
- * -----------------------------------------------------------------------------
- *  Show error reporting
- * -----------------------------------------------------------------------------
- *
- *  Set error reporting and display errors settings.
- *  You will want to change these when in production.
- *
- */
-
 error_reporting(-1);
-
 ini_set('display_errors', 1);
 
 /**
- * -----------------------------------------------------------------------------
- *  Define constants
- * -----------------------------------------------------------------------------
+ * Website document root
  */
-
-/**
- * -----------------------------------------------------------------------------
- *  Website document root
- * -----------------------------------------------------------------------------
- */
-
 define('DOCROOT', __DIR__.DIRECTORY_SEPARATOR);
 
 /**
- * -----------------------------------------------------------------------------
- *  Path to the application directory
- * -----------------------------------------------------------------------------
+ * Path to the application directory.
  */
-
 define('APPPATH', realpath(__DIR__.'/../fuel/app/').DIRECTORY_SEPARATOR);
 
 /**
- * -----------------------------------------------------------------------------
- *  Path to the default packages directory
- * -----------------------------------------------------------------------------
+ * Path to the default packages directory.
  */
-
 define('PKGPATH', realpath(__DIR__.'/../fuel/packages/').DIRECTORY_SEPARATOR);
 
 /**
- * -----------------------------------------------------------------------------
- *  The path to the framework core
- * -----------------------------------------------------------------------------
+ * The path to the framework core.
  */
-
 define('COREPATH', realpath(__DIR__.'/../fuel/core/').DIRECTORY_SEPARATOR);
 
-/**
- * -----------------------------------------------------------------------------
- *  Profiling
- * -----------------------------------------------------------------------------
- */
-
+// Get the start time and memory for use later
 defined('FUEL_START_TIME') or define('FUEL_START_TIME', microtime(true));
 defined('FUEL_START_MEM') or define('FUEL_START_MEM', memory_get_usage());
 
-/**
- * -----------------------------------------------------------------------------
- *  Preparing the Application
- * -----------------------------------------------------------------------------
- */
-
-/**
- * -----------------------------------------------------------------------------
- *  Check for dependencies
- * -----------------------------------------------------------------------------
- */
-
+// Load in the Fuel autoloader
 if ( ! file_exists(COREPATH.'classes'.DIRECTORY_SEPARATOR.'autoloader.php'))
 {
 	die('No composer autoloader found. Please run composer to install the FuelPHP framework dependencies first!');
 }
 
-/**
- * -----------------------------------------------------------------------------
- *  Activate autoloader class
- * -----------------------------------------------------------------------------
- */
-
+// Activate the framework class autoloader
 require COREPATH.'classes'.DIRECTORY_SEPARATOR.'autoloader.php';
-
 class_alias('Fuel\\Core\\Autoloader', 'Autoloader');
 
-/**
- * -----------------------------------------------------------------------------
- *  Route processing
- * -----------------------------------------------------------------------------
- *
- *  Exception route processing closure
- *
- */
-
+// Exception route processing closure
 $routerequest = function($request = null, $e = false)
 {
 	Request::reset_request(true);
@@ -148,21 +86,7 @@ $routerequest = function($request = null, $e = false)
 	return $response;
 };
 
-/**
- * -----------------------------------------------------------------------------
- *  Starting the Application
- * -----------------------------------------------------------------------------
- */
-
-/**
- * -----------------------------------------------------------------------------
- *  Start the engine
- * -----------------------------------------------------------------------------
- *
- *  Generate the request, execute it and send the output
- *
- */
-
+// Generate the request, execute it and send the output.
 try
 {
 	// Boot the app...
@@ -188,23 +112,12 @@ catch (HttpServerErrorException $e)
 	$response = $routerequest('_500_', $e);
 }
 
+// This will add the execution time and memory usage to the output.
+// Comment this out if you don't use it.
 $response->body((string) $response);
-
-/**
- * -----------------------------------------------------------------------------
- *  Start profiling
- * -----------------------------------------------------------------------------
- *
- *  This will add the execution time and memory usage to the output.
- *
- *  Comment these out if you don't use it.
- *
- */
-
 if (strpos($response->body(), '{exec_time}') !== false or strpos($response->body(), '{mem_usage}') !== false)
 {
 	$bm = Profiler::app_total();
-
 	$response->body(
 		str_replace(
 			array('{exec_time}', '{mem_usage}'),
@@ -214,13 +127,5 @@ if (strpos($response->body(), '{exec_time}') !== false or strpos($response->body
 	);
 }
 
-/**
- * -----------------------------------------------------------------------------
- *  Show the web page
- * -----------------------------------------------------------------------------
- *
- *  Send the output to the client
- *
- */
-
+// Send the output to the client
 $response->send(true);

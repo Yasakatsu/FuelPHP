@@ -1,7 +1,8 @@
-// フッターを最下部に固定
-$(function () {
-    let $ftr = $('footer');
-    if (window.innerHeight > $ftr.ofset().top + $ftr.outerHeight()) {
-        $ftr.attr({ 'style': 'positon:fixed;top' + (window.innerHeight - $ftr.outerHeight()) + 'px;' });
+$(function() {
+
+    // フッターを最下部に固定
+    var $ftr = $('#footer');
+    if (window.innerHeight > $ftr.offset().top + $ftr.outerHeight()) {
+        $ftr.attr({'style': 'position:fixed; top:' + (window.innerHeight - $ftr.outerHeight()) + 'px;'});
     }
 });

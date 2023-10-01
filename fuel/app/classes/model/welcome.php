@@ -2,11 +2,11 @@
 
 namespace Model;
 
-class welcome extends \Model
+class Welcome extends \Model
 {
-
-  public static function get_results()
-  {
-    return 'DBに登録したレコードが返ってきます。';
-  }
+    public static function get_results()
+    {
+        return 'レコードです';
+    }
 }
+
