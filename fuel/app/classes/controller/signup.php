@@ -71,10 +71,11 @@ class Controller_Signup extends Controller
         $view = View::forge('template/index');
         $view->set('head', View::forge('template/head'));
         $view->set('header', View::forge('template/header'));
-        $view->set('contents', View::forge('auth/signup'));
+        $view->set('content', View::forge('auth/signup'));
         $view->set('footer', View::forge('template/footer'));
         $view->set_global('signupform', $form->build(''), false);
         $view->set_global('error', $error);
+        $view->set_global('title', 'ユーザー登録画面');
 
         // レンダリングした HTML をリクエストに返す
         return $view;
