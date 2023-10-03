@@ -8,9 +8,7 @@
                     <li><?= $val ?></li>
                 <?php endforeach; ?>
             </ul>
-        <?php
-        endif;
-        ?>
+        <?php endif; ?>
         <?= $signupform ?>
     </section>
 </div>

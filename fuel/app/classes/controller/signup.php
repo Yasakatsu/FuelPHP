@@ -64,6 +64,7 @@ class Controller_Signup extends Controller
             }
             // フォームにPOSTされた値をセット
             $form->repopulate();
+            $form->form();
         }
 
         //変数としてビューを割り当てる

@@ -1,10 +1,13 @@
 <html>
+
 <head>
-	<?=$head?>
+	<?= $head ?>
 </head>
+
 <body>
-	<?=$header?>
-	<?=$contents?>
-	<?=$footer?>
+	<?= $header ?>
+	<?= $content ?>
+	<?= $footer ?>
 </body>
+
 </html>

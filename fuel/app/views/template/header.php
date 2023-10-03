@@ -17,7 +17,9 @@ if (!empty($errMsg)) :
 endif;
 ?>
 <header class="header">
-    <div class="site-width">
-        <?= Asset::img('logo-re.png', array('width' => '150', 'alt' => 'ロゴ画像', 'class' => 'vertical-center')) ?>
-    </div>
+    <span class="site-width">
+        <?= Asset::img('logo-re.png', array('alt' => 'ロゴ画像')) ?>
+        <span class="site-width">
+        </span>
+    </span>
 </header>
